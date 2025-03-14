@@ -4,10 +4,13 @@ import './Dashboard2.css';
 const Dashboard2 = () => {
   const [budget, setBudget] = useState("");
   const [usage, setUsage] = useState("");
+  const [screenSize, setScreenSize] = useState("");
+  const [batteryLife, setBatteryLife] = useState("");
+  const [brand, setBrand] = useState("");
 
   const getRecommendation = () => {
     if (!budget || !usage) {
-      return "Veuillez sélectionner budget et usage";
+      return "Veuillez sélectionner au moins budget et usage";
     }
 
     if (budget === "200") {
@@ -34,7 +37,7 @@ const Dashboard2 = () => {
     <div className="dashboard2">
       <h2>Trouver mon Modèle</h2>
       
-      <div>
+      <div className="form-group">
         <label htmlFor="budget">Budget maximum :</label>
         <select 
           id="budget"
@@ -51,7 +54,7 @@ const Dashboard2 = () => {
         </select>
       </div>
 
-      <div>
+      <div className="form-group">
         <label htmlFor="usage">Usage principal :</label>
         <select 
           id="usage"
@@ -62,6 +65,49 @@ const Dashboard2 = () => {
           <option value="jeux">Jeux</option>
           <option value="photo">Photo</option>
           <option value="travail">Travail</option>
+        </select>
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="screenSize">Taille de l'écran :</label>
+        <select 
+          id="screenSize"
+          value={screenSize} 
+          onChange={(e) => setScreenSize(e.target.value)}
+        >
+          <option value="">Choisir</option>
+          <option value="small">{'Petit (< 6")'}</option>
+          <option value="medium">{'Moyen (6-6.5")'}</option>
+          <option value="large">{'Grand (> 6.5")'}</option>
+        </select>
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="batteryLife">Autonomie :</label>
+        <select 
+          id="batteryLife"
+          value={batteryLife} 
+          onChange={(e) => setBatteryLife(e.target.value)}
+        >
+          <option value="">Choisir</option>
+          <option value="less10">{'< 10h'}</option>
+          <option value="more10">{`> 10h`}</option>
+        </select>
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="brand">Marque :</label>
+        <select 
+          id="brand"
+          value={brand} 
+          onChange={(e) => setBrand(e.target.value)}
+        >
+          <option value="">Choisir</option>
+          <option value="Samsung">Samsung</option>
+          <option value="Apple">Apple</option>
+          <option value="Xiaomi">Xiaomi</option>
+          <option value="Google">Google</option>
+          <option value="Huawei">Huawei</option>
         </select>
       </div>
 
