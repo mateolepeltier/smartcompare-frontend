@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import './Dashboard1.css';
 
 const defaultImages = {
-  "Samsung Galaxy S24": "https://images.unsplash.com/photo-1677606932182-cdc576638c75",
-  "Apple iPhone 15": "https://images.unsplash.com/photo-1662002586148-f9fb94a4f56e",
-  "Xiaomi Xiaomi 14": "https://images.unsplash.com/photo-1614028674026-a00e53aade1b",
-  "Google Pixel 8": "https://images.unsplash.com/photo-1635178961152-620e870e1e8d",
-  "Huawei P60 Pro": "https://images.unsplash.com/photo-1598327105666-5b89351aff97"
+  "Samsung Galaxy S24": "https://images.unsplash.com/photo-1677606932182-cdc576638c75?auto=format&fit=crop&w=400&q=80",
+  "Apple iPhone 15": "https://images.unsplash.com/photo-1662002586148-f9fb94a4f56e?auto=format&fit=crop&w=400&q=80",
+  "Xiaomi Xiaomi 14": "https://images.unsplash.com/photo-1614028674026-a00e53aade1b?auto=format&fit=crop&w=400&q=80",
+  "Google Pixel 8": "https://images.unsplash.com/photo-1635178961152-620e870e1e8d?auto=format&fit=crop&w=400&q=80",
+  "Huawei P60 Pro": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=400&q=80"
 };
 
 const Dashboard1 = () => {
@@ -44,7 +44,6 @@ const Dashboard1 = () => {
 
     // Filtre par prix
     if (filters.prix) {
-      // eslint-disable-next-line default-case
       switch (filters.prix) {
         case 'moins500':
           filtered = filtered.filter(phone => phone.prix < 500);
@@ -55,12 +54,14 @@ const Dashboard1 = () => {
         case 'plus1000':
           filtered = filtered.filter(phone => phone.prix > 1000);
           break;
+        default:
+          break;
       }
     }
 
-    // Filtre par stockage
+    // Filtre par stockage - Correction
     if (filters.stockage) {
-      filtered = filtered.filter(phone => phone.stockage === filters.stockage);
+      filtered = filtered.filter(phone => parseInt(phone.stockage) === parseInt(filters.stockage));
     }
 
     // Filtre par recherche
@@ -102,10 +103,10 @@ const Dashboard1 = () => {
           onChange={(e) => setFilters({...filters, stockage: e.target.value})}
         >
           <option value="">Tous les stockages</option>
-          <option value="64">64 Go</option>
           <option value="128">128 Go</option>
           <option value="256">256 Go</option>
           <option value="512">512 Go</option>
+          <option value="1024">1 To</option>
         </select>
 
         <input
@@ -120,9 +121,12 @@ const Dashboard1 = () => {
         {filteredPhones.map((phone) => (
           <div key={phone._id} className="phone-card">
             <img 
-              src={phone.image || defaultImages[`${phone.marque} ${phone.modele}`] || defaultImages["Samsung Galaxy S24"]} 
-              alt={phone.modele} 
-              className="phone-image" 
+              src={phone.image || defaultImages[`${phone.marque} ${phone.modele}`] || defaultImages["Samsung Galaxy S24"]}
+              alt={`${phone.marque} ${phone.modele}`}
+              className="phone-image"
+              loading="lazy"
+              width="400"
+              height="400"
             />
             <div className="phone-info">
               <h3>{phone.marque} {phone.modele}</h3>
