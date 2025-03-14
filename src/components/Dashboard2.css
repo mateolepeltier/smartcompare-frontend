@@ -1,0 +1,28 @@
+.dashboard2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .dashboard2 h2 { /* Changé de h1 à h2 */
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  /* Media queries pour mobile */
+  @media (max-width: 600px) {
+    .dashboard2 {
+      padding: 1rem;
+    }
+  
+    .dashboard2 h2 { /* Changé de h1 à h2 */
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+  }
