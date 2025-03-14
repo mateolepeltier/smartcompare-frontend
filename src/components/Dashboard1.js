@@ -44,7 +44,6 @@ const Dashboard1 = () => {
 
     // Filtre par prix
     if (filters.prix) {
-      // eslint-disable-next-line default-case
       switch (filters.prix) {
         case 'moins500':
           filtered = filtered.filter(phone => phone.prix < 500);
